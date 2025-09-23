@@ -19,11 +19,13 @@ export class AuthController {
   login(
     @Payload() loginDto: LoginDto
   ) {
-    return loginDto;
+     return this.authService.login(loginDto);
   }
 
   @MessagePattern('auth.refresh.user')
-  refresh() {
-    return 'refresh user';
+  refresh(
+    @Payload() token: string
+  ) {
+    return this.authService.refresh(token);
   }
 }
